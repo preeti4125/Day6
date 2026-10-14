@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Cake Haven | Bakery & Patisserie</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light topbar sticky-top">
+    <div class="container">
+        <a class="navbar-brand brand" href="#home">
+            ♡ <span>The Cake Haven<small>Freshly Baked Happiness</small></span>
+        </a>
+
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#shop">Cakes</a></li>
+                <li class="nav-item"><a class="nav-link" href="#shop">Pastries</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">Our Story</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+
+            <button class="cart-button" onclick="toggleCart()">
+                ♡ <span>Cart</span> (<span id="cartCount">0</span>)
+            </button>
+        </div>
+    </div>
+</nav>
+
+<section class="hero" id="home">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+        <p class="eyebrow">CAKES · PASTRIES · LITTLE JOYS</p>
+        <h1>Sweet Moments<br> <span>Start Here ♡</span></h1>
+        <p>Handcrafted cakes, delightful pastries and<br class="d-none d-md-block">
+            little treats made for your happiest moments.</p>
+        <a href="#shop" class="pink-button">Discover Our Treats ↗</a>
+        <div class="hero-note">Made with<br>love ♡</div>
+    </div>
+</section>
+
+<section class="shop-section" id="shop">
+    <div class="container-fluid px-lg-5">
+        <div class="row g-4">
+
+            <aside class="col-lg-2">
+                <div class="category-panel">
+                    <p class="eyebrow">MADE FOR YOU</p>
+                    <h4>Our Specials ♡</h4>
+                    <p class="small muted">Freshly baked. Always delicious.</p>
+
+                    <button class="category active" onclick="filterCakes('all', this)">♡ All Treats</button>
+                    <button class="category" onclick="filterCakes('cakes', this)">♧ Celebration Cakes</button>
+                    <button class="category" onclick="filterCakes('pastries', this)">♧ Pastries</button>
+                    <button class="category" onclick="filterCakes('cookies', this)">♧ Cookies</button>
+                    <button class="category" onclick="filterCakes('breads', this)">♧ Breads</button>
+                    <button class="category" onclick="filterCakes('drinks', this)">♧ Drinks</button>
+
+                    <div class="handwriting category-note">Life is better<br>with cake! ♡</div>
+                </div>
+            </aside>
+
+            <div class="col-lg-10">
+                <div class="row align-items-center mb-4 g-3">
+                    <div class="col-md-8">
+                        <input type="search" id="searchBox" class="search-box"
+                            placeholder="⌕  Search your favourite treats..."
+                            oninput="renderProducts()">
+                    </div>
+                    <div class="col-md-4">
+                        <select id="sortBox" class="search-box" onchange="renderProducts()">
+                            <option value="popular">Sort by: Recommended</option>
+                            <option value="low">Price: Low to High</option>
+                            <option value="high">Price: High to Low</option>
+                            <option value="name">Name: A to Z</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row g-4" id="productGrid"></div>
+
+                <div id="emptyMessage" class="text-center py-5 d-none">
+                    <h4>No treats found ♡</h4>
+                    <p>Try another search or category.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="special-section">
+    <div class="container">
+        <div class="special-card row align-items-center">
+            <div class="col-md-7">
+                <p class="eyebrow">A LITTLE SOMETHING SPECIAL</p>
+                <h2>Every celebration<br>deserves a <span>beautiful cake.</span></h2>
+                <p>Birthdays, anniversaries or just because.<br>
+                   Tell us your idea and let us make it sweeter.</p>
+                <a href="#contact" class="pink-button">Plan Your Cake ↗</a>
+            </div>
+            <div class="col-md-5 mt-4 mt-md-0">
+                <img src="https://images.unsplash.com/photo-1562777717-dc6984f65a63?auto=format&fit=crop&w=800&q=85"
+                    alt="Beautiful celebration cake" class="special-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-section" id="about">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-md-6">
+                <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85"
+                    alt="Freshly prepared dessert" class="about-img">
+            </div>
+            <div class="col-md-6">
+                <p class="eyebrow">OUR LITTLE STORY</p>
+                <h2>Baked with care.<br><span>Shared with love.</span></h2>
+                <p>We believe the sweetest things in life are the moments we share. Every treat is thoughtfully prepared to bring warmth, joy and a little magic to your day.</p>
+                <div class="row mt-4">
+                    <div class="col-4">
+                        <h3>100%</h3>
+                        <p class="small">Made with care</p>
+                    </div>
+                    <div class="col-4">
+                        <h3>Fresh</h3>
+                        <p class="small">Daily delights</p>
+                    </div>
+                    <div class="col-4">
+                        <h3>♡</h3>
+                        <p class="small">Baked with love</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section" id="contact">
+    <div class="container text-center">
+        <p class="eyebrow">LET'S MAKE IT SWEET</p>
+        <h2>Have a special occasion?</h2>
+        <p>Get in touch to discuss your custom cake ideas and orders.</p>
+        <a href="mailto:hello@example.com" class="pink-button">Contact Our Bakery ↗</a>
+    </div>
+</section>
+
+<footer>
+    <div class="container d-md-flex justify-content-between align-items-center">
+        <a href="#home" class="footer-brand">The Cake Haven ♡</a>
+        <p class="mb-0">Freshly baked happiness, every day.</p>
+        <p class="mb-0">© 2026 The Cake Haven</p>
+    </div>
+</footer>
+
+<div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
+
+<aside class="cart-drawer" id="cartDrawer">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4>Your Cart (<span id="drawerCount">0</span>)</h4>
+        <button class="close-cart" onclick="toggleCart()">✕</button>
+    </div>
+
+    <div id="cartItems"></div>
+
+    <div class="cart-bottom">
+        <div class="d-flex justify-content-between mb-3">
+            <strong>Total</strong>
+            <strong id="cartTotal">₹0</strong>
+        </div>
+        <button class="pink-button w-100" onclick="checkout()">Continue to Order ↗</button>
+        <p class="small muted mt-2">Demo website — no payment is collected.</p>
+    </div>
+</aside>
+
+<div class="toast-message" id="toastMessage"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
